@@ -27,6 +27,7 @@ const Discover = () => {
   const [bl_lng, setBl_lng] = useState(null);
   const [tr_lat, setTr_lat] = useState(null);
   const [tr_lng, setTr_lng] = useState(null);
+  const [getApi,setGetApi] = useState(false);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -42,7 +43,7 @@ const Discover = () => {
         setIsLoading(false);
       }, 2000);
     });
-  }, [bl_lat, bl_lng, tr_lat, tr_lng, type]);
+  }, [getApi]);
 
   return (
     <SafeAreaView className="flex-1 bg-gray-100 relative">
@@ -67,14 +68,16 @@ const Discover = () => {
           fetchDetails={true}
           onPress={(data, details = null) => {
             // 'details' is provided when fetchDetails = true
+            console.log(data);
             console.log(details?.geometry?.viewport);
             setBl_lat(details?.geometry?.viewport?.southwest?.lat);
             setBl_lng(details?.geometry?.viewport?.southwest?.lng);
             setTr_lat(details?.geometry?.viewport?.northeast?.lat);
             setTr_lng(details?.geometry?.viewport?.northeast?.lng);
+            setGetApi(!getApi);
           }}
           query={{
-            key: "YOUR_API_KEY",
+            key: "AIzaSyBeUm8iB07rhgWIai5jJ-bSDBsU0qGcxAA",
             language: "en",
           }}
         />
