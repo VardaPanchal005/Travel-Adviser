@@ -14,6 +14,7 @@ const ItemScreen = ({ route }) => {
   const navigation = useNavigation();
 
   const data = route?.params?.param;
+  console.log(data);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -50,12 +51,12 @@ const ItemScreen = ({ route }) => {
             <View className="flex-row space-x-2 items-center">
              
               <Text className="text-[32px] font-bold text-gray-100">
-                {data?.price}
+                {data?.price ?  data?.price : "No price"}
               </Text>
             </View>
 
             <View className="px-2 py-1 rounded-md bg-teal-100">
-              <Text>{data?.open_now_text}</Text>
+              <Text>{data?.open_now_text ? data?.open_now_text : "No opening details"}</Text>
             </View>
           </View>
         </View>
@@ -85,7 +86,7 @@ const ItemScreen = ({ route }) => {
             </View>
           )}
 
-          {data?.price_level && (
+          {data?.price_level ? (
             <View className=" flex-row items-center space-x-2">
               <View className="w-12 h-12 rounded-2xl bg-red-100 items-center justify-center shadow-md">
                 <MaterialIcons name="attach-money" size={24} color="black" />
@@ -95,7 +96,7 @@ const ItemScreen = ({ route }) => {
                 <Text className="text-[#515151]">Price Level</Text>
               </View>
             </View>
-          )}
+          ) : <View />}
 
           {data?.bearing && (
             <View className=" flex-row items-center space-x-2">
@@ -118,7 +119,7 @@ const ItemScreen = ({ route }) => {
           </Text>
         )}
 
-        {data?.cuisine && (
+        {data?.cuisine ? (
           <View className="flex-row gap-2 items-center justify-start flex-wrap mt-4">
             {data?.cuisine.map((n) => (
               <TouchableOpacity
@@ -129,21 +130,21 @@ const ItemScreen = ({ route }) => {
               </TouchableOpacity>
             ))}
           </View>
-        )}
+        ) : <View />}
 
         <View className=" space-y-2 mt-4 bg-gray-100 rounded-2xl px-4 py-2">
-          {data?.phone && (
+          {data?.phone ? (
             <View className="items-center flex-row space-x-6">
               <FontAwesome name="phone" size={24} color="#428288" />
               <Text className="text-lg">{data?.phone}</Text>
             </View>
-          )}
-          {data?.email && (
+          ): <View />}
+          {data?.email ? (
             <View className="items-center flex-row space-x-6">
               <FontAwesome name="envelope" size={24} color="#428288" />
               <Text className="text-lg">{data?.email}</Text>
             </View>
-          )}
+          ) : <View />}
           {data?.address && (
             <View className="items-center flex-row space-x-6">
               <FontAwesome name="map-pin" size={24} color="#428288" />

@@ -43,7 +43,7 @@ const Discover = () => {
         setIsLoading(false);
       }, 2000);
     });
-  }, [getApi]);
+  }, [getApi,type]);
 
   return (
     <SafeAreaView className="flex-1 bg-gray-100 relative">
